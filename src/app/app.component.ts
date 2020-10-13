@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Just Puppers!';
-  breed: string;
-
-  findDog() {
-    console.log(this.breed);
-  }
 }
