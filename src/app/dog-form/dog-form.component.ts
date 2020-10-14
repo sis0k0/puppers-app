@@ -23,6 +23,6 @@ export class DogFormComponent implements OnInit {
       } else {
         this.failedToFetchDog = true;
       }
-    });
+    }, (_err) => this.failedToFetchDog = true);
   }
 }

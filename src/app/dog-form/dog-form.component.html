@@ -2,8 +2,12 @@
     <input [(ngModel)]="breed" placeholder="Breed" />
     <button (click)="findDog()">Fetch!</button>
 
-    <div>
+    <div *ngIf="dogUrl">
         <img [src]="dogUrl" />
         <button [routerLink]="['list/', breed]">See more</button>
+    </div>
+
+    <div *ngIf="failedToFetchDog">
+        <p>Failed to fetch dog from the breed: {{ breed }}</p>
     </div>
 </div>

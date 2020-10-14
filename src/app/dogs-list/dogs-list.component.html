@@ -2,3 +2,7 @@
 <div *ngFor="let url of dogUrls">
     <img [src]="url" />
 </div>
+
+<div *ngIf="failedToFetchDogs">
+    <p>Failed to fetch dogs from the breed: {{ breed }}</p>
+</div>

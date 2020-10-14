@@ -31,7 +31,7 @@ export class DogsListComponent implements OnInit {
         } else {
           this.failedToFetchDogs = true;
         }
-      });
+      }, (_err) => this.failedToFetchDogs = true);
   }
 
 }
