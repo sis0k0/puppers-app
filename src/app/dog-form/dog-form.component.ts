@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DogService, BreedSingleImageResponse } from '../dog.service';
 
 @Component({
   selector: 'app-dog-form',
@@ -7,14 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DogFormComponent implements OnInit {
   breed: string;
+  dogUrl: string;
+  failedToFetchDog = false;
 
-  constructor() { }
+  constructor(private dogService: DogService) { }
 
   ngOnInit(): void {
   }
 
   findDog() {
-    console.log(this.breed);
+    this.dogService.findDog(this.breed).subscribe((result: BreedSingleImageResponse) => {
+      if (result.status === 'success') {
+        this.dogUrl = result.message;
+      } else {
+        this.failedToFetchDog = true;
+      }
+    });
   }
-
 }
