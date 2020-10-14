@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DogService, BreedImagesResponse } from '../dog.service';
 
 @Component({
   selector: 'app-dogs-list',
@@ -7,12 +8,30 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dogs-list.component.css']
 })
 export class DogsListComponent implements OnInit {
+  breed: string;
+  dogUrls: string[];
+  failedToFetchDogs = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private dogService: DogService
+  ) { }
 
   ngOnInit(): void {
-    const breed = this.route.snapshot.paramMap.get('breed');
-    alert(breed);
+    this.getDogs();
+  }
+
+  getDogs() {
+    this.breed = this.route.snapshot.paramMap.get('breed');
+    this.dogService.findMany(this.breed, 20)
+      .subscribe((result: BreedImagesResponse) => {
+        if (result.status === 'success') {
+          this.dogUrls = result.message;
+          console.log(this.dogUrls);
+        } else {
+          this.failedToFetchDogs = true;
+        }
+      });
   }
 
 }

@@ -7,6 +7,11 @@ export interface BreedSingleImageResponse {
   status: string;
 }
 
+export interface BreedImagesResponse {
+  message: string[];
+  status: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,5 +24,11 @@ export class DogService {
     const endpoint = `https://dog.ceo/api/breed/${breed}/images/random`;
 
     return this.http.get<BreedSingleImageResponse>(endpoint);
+  }
+
+  findMany(breed: string, count: number): Observable<BreedImagesResponse> {
+    const endpoint = `https://dog.ceo/api/breed/${breed}/images/random/${count}`;
+
+    return this.http.get<BreedImagesResponse>(endpoint);
   }
 }
