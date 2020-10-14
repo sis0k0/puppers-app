@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DogFormComponent } from './dog-form/dog-form.component';
+import { DogsListComponent } from './dogs-list/dogs-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DogFormComponent
+    DogFormComponent,
+    DogsListComponent
   ],
   imports: [
     BrowserModule,
