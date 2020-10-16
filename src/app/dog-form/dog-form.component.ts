@@ -20,6 +20,7 @@ export class DogFormComponent implements OnInit {
     this.dogService.findDog(this.breed).subscribe((result: BreedSingleImageResponse) => {
       if (result.status === 'success') {
         this.dogUrl = result.message;
+        this.failedToFetchDog = false;
       } else {
         this.failedToFetchDog = true;
       }

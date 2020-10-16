@@ -1,8 +1,8 @@
 <h2>{{ breed | titlecase }}</h2>
-<div *ngFor="let url of dogUrls">
-    <img [src]="url" />
+<div class="text-center" *ngFor="let url of dogUrls">
+    <img class="img-fluid img-thumbnail" [src]="url" />
 </div>
 
-<div *ngIf="failedToFetchDogs">
-    <p>Failed to fetch dogs from the breed: {{ breed }}</p>
+<div class="alert alert-danger" role="alert" *ngIf="failedToFetchDogs">
+    <p>Failed to fetch dogs from the breed: <b>{{ breed }}</b></p>
 </div>
